@@ -56,12 +56,6 @@ const SplashPage = () => {
 
     return (
         <div className="splash-wrapper">
-            <header className="site-header">
-                <div className="logo">
-                    <span>COPILOT</span>
-                </div>
-            </header>
-
             <div className="splash-container">
                 <div className="stars" ref={starsRef}></div>
                 
