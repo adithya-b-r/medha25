@@ -4,7 +4,8 @@ export const Navbar = () => {
       <div className="uppercase">To Infinity<br />& beyond</div>
 
       <div>
-        <img className="h-15" src="medha2.png" alt="" />
+        {/* <img className="h-15" src="medha2.png" alt="" /> */}
+        <h3 className="uppercase text-3xl">Medha .25</h3>
       </div>
 
       <button

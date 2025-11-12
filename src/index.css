@@ -1,10 +1,10 @@
 @layer base {
   @font-face {
-    font-family: 'Rustea Custom'; 
+    font-family: 'Rustea Custom';
     src: url('https://hellocopilot.com/wp-content/themes/copilot/fonts/Rustea.otf') format('opentype');
-    font-weight: normal; 
+    font-weight: normal;
     font-style: normal;
-    font-display: swap; 
+    font-display: swap;
   }
 }
 
@@ -12,7 +12,7 @@
 
 @layer base {
   * {
-    font-family: 'Rustea Custom', 'serif'; 
+    font-family: 'Rustea Custom', 'serif';
   }
 }
 
@@ -20,7 +20,61 @@
   from {
     transform: rotate(360deg);
   }
+
   to {
     transform: rotate(0deg);
   }
+}
+
+:root {
+  --frame-padding: 20px;
+  --clip-border-color: #fff;
+  --clip-bg-color: #6b7280;
+  --bs-font-manrope: 'Manrope', sans-serif;
+}
+
+.nav-holder {
+  font-family: var(--bs-font-manrope);
+  position: fixed;
+  z-index: 50;
+  bottom: 2cm;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: 560px;
+  height: 80px;
+  margin: auto;
+  pointer-events: none;
+}
+
+.clipped-shape {
+  position: relative;
+  width: 550px;
+  height: 80px;
+}
+
+.clipped-shape:before {
+  content: "";
+  background-color: var(--clip-border-color, #fff);
+  transition: background-color .4s ease-in-out;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  -webkit-clip-path: polygon(8px 15px, 8px calc(100% - 8px), calc(100% - 46px) calc(100% - 8px), calc(100% - 8px) calc(100% - 30px), calc(100% - 8px) 18px, calc(100% - 19px) 8px, 113px 8px, 104px 15px, 8px 15px, 105px 16px, 114px 9px, calc(100% - 20px) 9px, calc(100% - 9px) 19px, calc(100% - 9px) calc(100% - 31px), calc(100% - 47px) calc(100% - 9px), 9px calc(100% - 9px), 9px 16px, 106px 16px);
+  clip-path: polygon(8px 15px, 8px calc(100% - 8px), calc(100% - 46px) calc(100% - 8px), calc(100% - 8px) calc(100% - 30px), calc(100% - 8px) 18px, calc(100% - 19px) 8px, 113px 8px, 104px 15px, 8px 15px, 105px 16px, 114px 9px, calc(100% - 20px) 9px, calc(100% - 9px) 19px, calc(100% - 9px) calc(100% - 31px), calc(100% - 47px) calc(100% - 9px), 9px calc(100% - 9px), 9px 16px, 106px 16px);
+}
+
+.clipped-shape:after {
+  content: "";
+  background-color: var(--clip-border-color, #fff);
+  transition: background-color .4s ease-in-out;
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  -webkit-clip-path: polygon(0px 8px, 0px calc(100% - 0px), calc(100% - 42px) calc(100% - 0px), calc(100% - 0px) calc(100% - 25px), calc(100% - 0px) 14px, calc(100% - 18px) 0px, 112px 0px, 102px 8px, 10px 8px, 0px 8px, 11px 9px, 103px 9px, 113px 1px, calc(100% - 19px) 1px, calc(100% - 1px) 15px, calc(100% - 1px) calc(100% - 26px), calc(100% - 43px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px, 11px 9px);
+  clip-path: polygon(0px 8px, 0px calc(100% - 0px), calc(100% - 42px) calc(100% - 0px), calc(100% - 0px) calc(100% - 25px), calc(100% - 0px) 14px, calc(100% - 18px) 0px, 112px 0px, 102px 8px, 10px 8px, 0px 8px, 11px 9px, 103px 9px, 113px 1px, calc(100% - 19px) 1px, calc(100% - 1px) 15px, calc(100% - 1px) calc(100% - 26px), calc(100% - 43px) calc(100% - 1px), 1px calc(100% - 1px), 1px 9px, 11px 9px);
+}
+
+.nav-holder>div:last-child {
+  pointer-events: auto;
 }

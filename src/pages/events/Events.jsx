@@ -22,7 +22,6 @@ export const Events = () => {
   const textRef = useRef(null);
 
   useGSAP(() => {
-    // Floating animation for product
     gsap.to(eventRef.current, {
       y: -20,
       x: -20,
@@ -33,15 +32,13 @@ export const Events = () => {
       repeatDelay: 0
     });
 
-    // Horizontal scroll animation for text
     gsap.to(textRef.current, {
-      x: "100vw", // Move across entire viewport width
-      duration: 10,
-      ease: "none",
+      x: "100vw",
+      duration: 20,
+      ease: "linear",
       repeat: -1,
       modifiers: {
         x: (x) => {
-          // Create seamless loop by resetting position
           const xNum = parseFloat(x);
           return `${(xNum % 100) - 100}vw`;
         }
@@ -55,7 +52,6 @@ export const Events = () => {
       className="relative w-screen h-screen bg-blue-900 [background:linear-gradient(180deg,#162145_0%,#122D53_35%,#0B4772_55%,#016797_100%)] overflow-hidden"
     >
       <div className="absolute inset-0 z-0" />
-
       {backgroundLayers.map((layer) => (
         <img
           key={layer.src}
@@ -69,7 +65,7 @@ export const Events = () => {
       <div className="absolute top-50 z-10 w-full overflow-hidden">
         <h1
           ref={textRef}
-          className="uppercase text-[220px] font-bold whitespace-nowrap [-webkit-text-stroke:1px_lightblue] [-webkit-text-fill-color:transparent] [color:transparent] filter drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"
+          className="uppercase text-[220px] font-bold whitespace-nowrap [-webkit-text-stroke:1px_lightblue] [-webkit-text-fill-color:transparent] text-transparent filter drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"
         >
           Technical Events Technical Events Technical Events
         </h1>
@@ -85,6 +81,25 @@ export const Events = () => {
         <img className="absolute bottom-200 h-[60%]" src={images[3].src} alt="" />
       </div>
 
+      <div className="nav-holder" style={{
+        bottom: '20px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: 'auto',
+        maxWidth: '560px',
+        margin: 'auto'
+      }}>
+        <div className="clipped-shape relative w-[90%] h-20">
+        </div>
+        <div className="absolute inset-0 flex items-center px-2 pointer-events-auto">
+          <div className="w-full overflow-hidden h-full flex justify-around items-center text-blue-900 font-bold">
+            <button className="px-4 py-2">Home</button>
+            <button className="px-4 py-2">Events</button>
+            <button className="px-4 py-2">About</button>
+            <button className="px-4 py-2">Contact</button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
