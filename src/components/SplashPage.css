@@ -1,0 +1,797 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Space Grotesk", sans-serif;
+    color: white;
+}
+
+@font-face {
+    font-family: 'Rustea';
+    src: url('https://hellocopilot.com/wp-content/themes/copilot/fonts/Rustea.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.splash-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+     
+    background: radial-gradient(circle at 50% 30%, #ff00aa 0%, #ff16e0 40%, #200d30 100%);
+}
+
+/* Animated stars background */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+}
+
+.star.shooting {
+    width: 1px;
+    height: 1px;
+    animation: shootingStar 3s linear infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+@keyframes shootingStar {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-300px) translateY(300px);
+        opacity: 0;
+    }
+}
+
+/* Particle effects */
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5;
+    animation: particleFloat 4s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(50px) scale(0.5);
+        opacity: 0;
+    }
+}
+
+.site-header, .site-footer {
+    position: absolute;
+    left: 50px;
+    right: 50px;
+    z-index: 30;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    animation: fadeInDown 1s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.site-header {
+    top: 40px;
+    justify-content: center;
+}
+
+.site-footer {
+    bottom: 40px;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.site-header .logo,
+.site-footer a {
+    pointer-events: all;
+    text-decoration: none;
+    color: white;
+    opacity: 0.8;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.site-header .logo:hover,
+.site-footer a:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.site-header .logo svg {
+    width: 150px;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+.sound-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.sound-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.scene-layer {
+    position: absolute;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+.planet {
+    top: 5%;
+    left: 50%;
+    width: 60%;
+    height: auto;
+    transform: translateX(-50%);
+    z-index: 1;
+    opacity: 0.8;
+    max-width: 800px;
+    filter: blur(20px);
+    animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.8; }
+    50% { transform: translateX(-50%) scale(1.05); opacity: 0.9; }
+}
+
+.planet-surface {
+    top: 5%;
+    left: 50%;
+    width: 30%;
+    height: auto;
+    transform: translateX(-50%);
+    z-index: 2;
+    opacity: 1;
+    max-width: 800px;
+    animation: slow-spin 70s linear infinite, planetGlow 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(255, 165, 0, 0.5));
+}
+
+@keyframes planetGlow {
+    0%, 100% {
+        filter: drop-shadow(0 0 30px rgba(255, 165, 0, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 50px rgba(255, 165, 0, 0.8));
+    }
+}
+
+@keyframes slow-spin {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to { transform: translateX(-50%) rotate(-360deg); }
+}
+
+.floating-rocks {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    z-index: 3;
+    opacity: 0.9;
+    animation: floatRocks 20s ease-in-out infinite;
+}
+
+@keyframes floatRocks {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-10px) translateX(5px); }
+    50% { transform: translateY(0) translateX(-5px); }
+    75% { transform: translateY(10px) translateX(5px); }
+}
+
+.spaceship-floor {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    object-fit: contain;
+    object-position: bottom center;
+    z-index: 6;
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.astronaut {
+    top: 70%;
+    left: 50%;
+    height: 90%;
+    width: auto;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    min-height: 400px;
+    animation: floatAstronaut 6s ease-in-out infinite;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes floatAstronaut {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+    50% { transform: translate(-50%, -50%) translateY(-15px); }
+}
+
+.marquee {
+    position: absolute;
+    top: 28%;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.marquee-inner {
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+    font-family: 'Rustea', Georgia, 'Times New Roman', Times, serif; 
+    font-size: 15vw;
+    font-weight: normal;
+    color: #FFFFFF;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
+                 0 0 40px rgba(255, 4, 4, 0.3);
+    animation: marquee 70s linear infinite, textPulse 3s ease-in-out infinite;
+}
+
+/* @keyframes textPulse {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5),
+                     0 0 40px rgba(255, 100, 100, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
+                     0 0 60px rgba(255, 100, 100, 0.6);
+    }
+} */
+ @keyframes textPulse {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(247, 208, 208, 0.5),
+                     0 0 40px rgba(252, 2, 2, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.8),
+                     0 0 60px rgba(228, 62, 62, 0.6);
+    }
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+}
+
+.age-gate {
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    text-align: center;
+    animation: fadeInScale 1s ease-out 0.5s both;
+    width: 90%;
+    max-width: 500px;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+.age-gate h3 {
+    font-size: clamp(1rem, 4vw, 1.4rem);
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8),
+                 0 4px 10px rgba(0,0,0,0.5);
+    text-transform: uppercase;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 16px 40px;
+    border: 2px solid white;
+    border-radius: 50px;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
+    letter-spacing: 1px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    min-width: 120px;
+    border: none;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.btn.btn-yes {
+    background: linear-gradient(135deg, #d93a3e 0%, #ff6b6b 100%);
+    border-color: #d93a3e;
+    box-shadow: 0 8px 25px rgba(217, 58, 62, 0.4);
+}
+
+.btn.btn-no {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.05);
+}
+
+.btn.btn-yes:hover {
+    background: linear-gradient(135deg, #ff6b6b 0%, #d93a3e 100%);
+    box-shadow: 0 12px 35px rgba(217, 58, 62, 0.6);
+}
+
+.btn.btn-no:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3);
+}
+
+.btn:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+.alert-modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out;
+    padding: 20px;
+}
+
+.alert-content {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    color: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    animation: scaleIn 0.3s ease-out;
+    backdrop-filter: blur(10px);
+    max-width: 90%;
+    width: 400px;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.alert-content p {
+    margin: 0 0 25px 0;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    font-weight: 500;
+}
+
+.alert-content button {
+    padding: 12px 35px;
+    background: linear-gradient(135deg, #d93a3e 0%, #ff6b6b 100%);
+    border: none;
+    color: white;
+    border-radius: 30px;
+    font-weight: 700;
+    font-family: "Space Grotesk", sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: clamp(0.9rem, 2.5vw, 1rem);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(217, 58, 62, 0.4);
+}
+
+.alert-content button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(217, 58, 62, 0.6);
+}
+
+.alert-content button:active {
+    transform: translateY(0);
+}
+
+/* Tablet adjustments (landscape and portrait) */
+@media (max-width: 1024px) {
+    .planet {
+        width: 70%;
+        top: 3%;
+    }
+
+    .planet-surface {
+        width: 35%;
+    }
+
+    .astronaut {
+        height: 85%;
+        min-height: 350px;
+        top: 68%;
+    }
+
+    .marquee {
+        top: 25%;
+    }
+
+    .marquee-inner {
+        font-size: 16vw;
+    }
+
+    .age-gate {
+        bottom: 25%;
+    }
+}
+
+/* Mobile landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+    .site-header {
+        top: 15px;
+    }
+
+    .site-header .logo span {
+        font-size: 1.2rem;
+    }
+
+    .planet {
+        width: 50%;
+        top: -5%;
+    }
+
+    .planet-surface {
+        width: 25%;
+        top: -5%;
+    }
+
+    .astronaut {
+        height: 80%;
+        min-height: 280px;
+        top: 60%;
+    }
+
+    .marquee {
+        top: 15%;
+    }
+
+    .marquee-inner {
+        font-size: 12vw;
+    }
+
+    .age-gate {
+        bottom: 15%;
+    }
+
+    .age-gate h3 {
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        padding: 12px 30px;
+        min-width: 100px;
+    }
+
+    .buttons {
+        gap: 12px;
+    }
+}
+
+/* Mobile portrait */
+@media (max-width: 768px) and (orientation: portrait) {
+    .site-header, .site-footer {
+        left: 20px;
+        right: 20px;
+        top: 20px;
+    }
+
+    .site-header .logo span {
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+    }
+
+    .planet {
+        width: 80%;
+        top: 8%;
+    }
+
+    .planet-surface {
+        width: 40%;
+        top: 8%;
+    }
+
+    .floating-rocks {
+        opacity: 0.7;
+    }
+
+    .astronaut {
+        height: 75%;
+        min-height: 300px;
+        top: 65%;
+    }
+
+    .spaceship-floor {
+        height: 110%;
+    }
+
+    .marquee {
+        top: 22%;
+    }
+
+    .marquee-inner {
+        font-size: 18vw;
+    }
+
+    .age-gate {
+        bottom: 22%;
+        width: 85%;
+    }
+
+    .age-gate h3 {
+        margin-bottom: 20px;
+        letter-spacing: 1.5px;
+    }
+
+    .btn {
+        padding: 14px 30px;
+    }
+
+    .buttons {
+        gap: 12px;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .site-header {
+        top: 15px;
+    }
+
+    .site-header .logo span {
+        font-size: 1rem;
+        letter-spacing: 1.5px;
+    }
+
+    .planet {
+        width: 90%;
+        top: 10%;
+    }
+
+    .planet-surface {
+        width: 45%;
+        top: 10%;
+    }
+
+    .astronaut {
+        height: 70%;
+        min-height: 250px;
+        top: 62%;
+    }
+
+    .marquee {
+        top: 20%;
+    }
+
+    .marquee-inner {
+        font-size: 20vw;
+    }
+
+    .age-gate {
+        bottom: 18%;
+        width: 90%;
+    }
+
+    .age-gate h3 {
+        margin-bottom: 15px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        min-width: 100px;
+        font-size: 0.85rem;
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+
+    .alert-content {
+        padding: 30px 20px;
+    }
+}
+
+/* Very small devices */
+@media (max-width: 360px) {
+    .astronaut {
+        height: 65%;
+        min-height: 220px;
+    }
+
+    .age-gate {
+        bottom: 15%;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        min-width: 90px;
+        font-size: 0.8rem;
+    }
+
+    .marquee-inner {
+        font-size: 22vw;
+    }
+}
+
+/* Large screens */
+@media (min-width: 1440px) {
+    .planet {
+        max-width: 900px;
+    }
+
+    .planet-surface {
+        max-width: 500px;
+    }
+
+    .astronaut {
+        max-height: 800px;
+    }
+
+    .marquee-inner {
+        font-size: 17vw;
+    }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1920px) {
+    .marquee-inner {
+        font-size: 10vw;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .btn:hover {
+        transform: none;
+    }
+
+    .btn:active {
+        transform: scale(0.95);
+    }
+
+    .site-header .logo:hover,
+    .site-footer a:hover {
+        transform: none;
+    }
+}
