@@ -3,15 +3,13 @@ import { useEffect, useRef, useState } from 'react';
 const Home = () => {
   const starsContainerRef = useRef(null);
   const splashContainerRef = useRef(null);
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
 
   // Create animated stars
   const createStars = () => {
     const starsContainer = starsContainerRef.current;
     if (!starsContainer) return;
 
-    const starCount = window.innerWidth < 768 ? 300 : 500;
+    const starCount = 300;
 
     for (let i = 0; i < starCount; i++) {
       const star = document.createElement('div');
@@ -58,7 +56,7 @@ const Home = () => {
     const container = splashContainerRef.current;
     if (!container) return;
 
-    const particleCount = window.innerWidth < 768 ? 10 : 20;
+    const particleCount = 10;
 
     for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
@@ -72,31 +70,8 @@ const Home = () => {
     }
   };
 
-  // Handle age gate buttons
-  const handleYesClick = (e) => {
-    e.preventDefault();
-    setAlertMessage("Access Granted! Navigating to /products/ ...");
-    setShowAlert(true);
-  };
-
-  const handleNoClick = (e) => {
-    e.preventDefault();
-    setAlertMessage("Access Denied. Redirecting to Google Earth...");
-    setShowAlert(true);
-
-    setTimeout(() => {
-      window.location.href = "https://earth.google.com/";
-    }, 100);
-  };
-
-  const closeAlert = () => {
-    setShowAlert(false);
-  };
-
   // Add parallax effect
   const handleMouseMove = (e) => {
-    if (window.innerWidth < 768) return; // Disable parallax on mobile
-
     const mouseX = e.clientX / window.innerWidth;
     const mouseY = e.clientY / window.innerHeight;
 
@@ -130,7 +105,6 @@ const Home = () => {
     // Add event listeners
     document.addEventListener('mousemove', handleMouseMove);
 
-    // Handle window resize
     const handleResize = () => {
       // Recreate stars and particles on resize for better performance
       const starsContainer = starsContainerRef.current;
@@ -157,21 +131,12 @@ const Home = () => {
 
   return (
     <div id="main-content" className="w-full h-full">
-      {/* Header */}
-      {/* <header className="fixed top-4 md:top-10 left-4 right-4 md:left-12 md:right-12 z-50 flex justify-center items-center pointer-events-none animate-fade-in-down">
-        <div className="logo pointer-events-auto">
-          <span className="text-white opacity-95 text-xs md:text-sm font-medium transition-all duration-300 ease-in-out relative z-10 text-shadow-lg hover:scale-110 hover:text-shadow-xl">
-            COPILOT
-          </span>
-        </div>
-      </header> */}
-
       {/* Main Splash Container */}
       <div
         ref={splashContainerRef}
         className="relative w-screen h-screen overflow-hidden bg-[#152448] bg-cover bg-center bg-no-repeat bg-blend-overlay"
         style={{
-          backgroundImage: `linear-gradient(circle at 50% 30%,rgb(238, 37, 15) 0%,rgb(241, 29, 54) 80%,rgb(248, 0, 50) 100%), url('https://hellocopilot.com/wp-content/themes/copilot/img/touchdown/webp/1.png.webp')`
+          backgroundImage: `linear-gradient(circle at 50% 30%,rgb(238, 37, 15) 0%,rgb(241, 29, 54) 80%,rgb(248, 0, 50) 100%), url('./home-cloud.webp')`
         }}
       >
         {/* Glow Overlay */}
@@ -184,14 +149,14 @@ const Home = () => {
         {/* Planet Background */}
         <img
           src="/web_element.png"
-          className="planet-bg absolute top-[5%] md:top-[5%] left-1/2 w-4/5 md:w-3/5 max-w-[800px] -translate-x-1/2 z-20 opacity-80 blur-xl animate-pulse-custom"
+          className="planet-bg absolute top-[5%] left-1/2 w-4/5 max-w-[800px] -translate-x-1/2 z-20 opacity-80 blur-xl animate-pulse-custom md:w-3/5"
           alt="Red planet background"
         />
 
         {/* Planet Surface */}
         <img
-          src="https://hellocopilot.com/wp-content/themes/copilot/img/takeoff/webp/planet-yellow-sativa.png.webp"
-          className="planet-surface absolute top-[10%] md:top-[5%] left-[120%] md:left-full lg:left-[75%] xl:left-[65%]  2xl:w-[30%] max-w-[600px] -translate-x-1/2 z-25 animate-slow-spin animate-planet-glow"
+          src="./planet-yellow-sativa.png.webp"
+          className="planet-surface absolute top-[5%] max-w-[600px] md:translate-x-162 translate-x-25 md:scale-100 scale-75  z-25 animate-slow-spin animate-planet-glow"
           style={{
             filter: 'drop-shadow(0 0 40px rgba(255, 165, 0, 0.6)) drop-shadow(0 0 80px rgba(255, 100, 0, 0.3))'
           }}
@@ -200,7 +165,7 @@ const Home = () => {
 
         {/* Floating Rocks */}
         <img
-          src="https://hellocopilot.com/wp-content/themes/copilot/img/home-page/webp/home-rocks.png.webp"
+          src="./home-rocks.png.webp"
           className="floating-rocks absolute inset-0 object-cover object-center z-30 opacity-90 animate-float-rocks"
           style={{
             filter: 'drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5))'
@@ -209,8 +174,8 @@ const Home = () => {
         />
 
         {/* Marquee Text */}
-        <div className="marquee absolute top-[39%] md:top-[25%] left-0 w-full z-40 whitespace-nowrap overflow-hidden opacity-100 pointer-events-none">
-          <div className="uppercase marquee-inner inline-block font-rustea text-[22vh] md:text-[15vw] font-semibold bg-linear-to-b from-white to-[#ffcccc] bg-clip-text text-transparent animate-marquee text-shadow-lg text-shadow-white tracking-tighter">
+        <div className="marquee absolute top-[39%] left-0 w-full z-40 whitespace-nowrap overflow-hidden opacity-100 pointer-events-none md:top-[25%]">
+          <div className="uppercase marquee-inner inline-block font-rustea text-[22vh] font-semibold bg-linear-to-b from-white to-[#ffcccc] bg-clip-text text-transparent animate-marquee text-shadow-lg text-shadow-white tracking-tighter md:text-[15vw]">
             <span>Medha <span className='text-[12vh]'>.25</span> &nbsp;</span>
             <span>Medha <span className='text-[12vh]'>.25</span> &nbsp;</span>
             <span>Medha <span className='text-[12vh]'>.25</span> &nbsp;</span>
@@ -219,8 +184,8 @@ const Home = () => {
 
         {/* Astronaut */}
         <img
-          src="https://hellocopilot.com/wp-content/themes/copilot/img/home-page/webp/home-astronaut.png.webp"
-          className="astronaut md:scale-150 scale-156 absolute top-[135%] md:top-[110%]  lg:top-[160%]  left-[95%] md:lg-[80%] lg:left-[66%] xl:left-[60%] h-[65%] md:h-[90%] w-auto -translate-x-1/2 -translate-y-1/2 z-40 min-h-[300px] md:min-h-[400px] animate-float-astronaut"
+          src="./home-astronaut.webp"
+          className="astronaut md:scale-150 scale-170 absolute top-[145%] h-[65%] w-auto md:translate-x-178 translate-x-60 md:-translate-y-1/2 -translate-y-65 z-40 min-h-[300px] animate-float-astronaut  md:top-[150%] md:h-[90%] md:min-h-[400px]"
           style={{
             filter: 'drop-shadow(0 15px 40px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 30px rgba(255, 100, 150, 0.2))'
           }}
@@ -229,43 +194,19 @@ const Home = () => {
 
         {/* Spaceship Floor */}
         <img
-          src="https://hellocopilot.com/wp-content/themes/copilot/img/home-page/webp/home-spaceship-page.png.webp"
-          className="spaceship-floor absolute bottom-0 left-0 w-full h-[120%]  md:h-[120%] object-cover  object-bottom z-35 animate-fade-in"
+          src="./home-spaceship-page.png.webp"
+          className="spaceship-floor absolute md:bottom-0 -bottom-10 left-0 w-full h-[120%] object-cover object-bottom z-35 animate-fade-in md:h-[120%]"
           style={{
             filter: 'drop-shadow(0 -10px 40px rgba(0, 0, 0, 0.7))'
           }}
           alt="Interior of a spaceship cockpit"
         />
 
-        {/* Orbit Rings - Hidden on mobile */}
-        <div className="orbit-ring absolute w-[200px] h-[200px] md:w-[300px] md:h-[300px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-white/10 rounded-full animate-rotate-orbit pointer-events-none hidden md:block"></div>
-        <div className="orbit-ring absolute w-[300px] h-[300px] md:w-[450px] md:h-[450px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-white/10 rounded-full animate-rotate-orbit pointer-events-none hidden md:block"
+        {/* Orbit Rings */}
+        <div className="orbit-ring absolute w-[200px] h-[200px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-white/10 rounded-full animate-rotate-orbit pointer-events-none hidden md:block md:w-[300px] md:h-[300px]"></div>
+        <div className="orbit-ring absolute w-[300px] h-[300px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-white/10 rounded-full animate-rotate-orbit pointer-events-none hidden md:block md:w-[450px] md:h-[450px]"
           style={{ animationDuration: '35s', animationDirection: 'reverse' }}></div>
       </div>
-
-      {/* Alert Modal */}
-      {showAlert && (
-        <div
-          className="fixed inset-0 z-100 flex items-center justify-center p-4 md:p-5 bg-black/85 backdrop-blur-sm animate-fade-in"
-          onClick={closeAlert}
-        >
-          <div
-            className="bg-linear-to-br from-gray-800 via-gray-900 to-gray-800 text-white p-6 md:p-12 rounded-2xl text-center border border-white/20 shadow-2xl shadow-black/90 backdrop-blur-xl max-w-[95%] md:max-w-[90%] w-full md:w-[450px] relative animate-scale-in"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/5 h-px bg-linear-to-r from-transparent via-white/30 to-transparent" />
-            <p className="mb-6 md:mb-8 text-[clamp(1rem,4vw,1.3rem)] font-medium leading-relaxed">
-              {alertMessage}
-            </p>
-            <button
-              onClick={closeAlert}
-              className="px-8 md:px-10 py-3 bg-linear-to-br from-[#d93a3e] via-[#ff6b6b] to-[#ff8888] border-none text-white rounded-full font-bold cursor-pointer transition-all duration-400 text-[clamp(0.9rem,3vw,1.05rem)] uppercase tracking-widest shadow-lg shadow-[#d93a3e]/50 relative overflow-hidden hover:-translate-y-0.5"
-            >
-              OK
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
