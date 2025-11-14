@@ -1,9 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
 import ScrollDown from './ScrollDown';
 
+// GSAP
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+
 const Home = () => {
   const starsContainerRef = useRef(null);
   const splashContainerRef = useRef(null);
+
+  // GSAP Start
+  const astronautRef = useRef(null);
+
+  useGSAP(() => {
+    el1 = astronautRef.current;
+  })
+  //GSAP End
 
   // Create animated stars
   const createStars = () => {
@@ -185,6 +201,7 @@ const Home = () => {
 
         {/* Astronaut */}
         <img
+          ref={astronautRef}
           src="./home-astronaut.webp"
           className="astronaut md:scale-150 scale-170 absolute top-[145%] h-[65%] w-auto md:translate-x-178 translate-x-60 md:-translate-y-1/2 -translate-y-65 z-40 min-h-[300px] animate-float-astronaut  md:top-[150%] md:h-[90%] md:min-h-[400px]"
           style={{
