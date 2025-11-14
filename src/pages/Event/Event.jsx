@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { Rules } from "./subSection/Rules";
 import { Contact } from "./Contact";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
@@ -182,6 +183,9 @@ export const Event = () => {
           {events[section]?.name || ""}
         </h1>
       </div>
+
+      {/* Rules and Coordinators Section */}
+      <Rules eventName={events[section]?.name || ""} section={0} />
 
       <button
         onClick={() => { navigate("/events/") }}
