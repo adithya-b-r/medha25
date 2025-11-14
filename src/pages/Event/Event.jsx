@@ -6,6 +6,8 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { Contact } from "./Contact";
+
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const events = [
@@ -71,7 +73,7 @@ export const Event = () => {
 
     const scene2 = gsap.to([el3],
       {
-        scale: 0.3,
+        scale: 0.4,
         translateY: 120,
         rotationZ: 90,
         scrollTrigger: {
@@ -116,6 +118,8 @@ export const Event = () => {
       scene2.kill();
       scene3.kill();
       scene4.kill();
+
+      // gsap.set([el1, el2, el3, el4, el5], { clearProps: "all" });
     }
   }, []);
   // GSAP END
@@ -139,7 +143,7 @@ export const Event = () => {
       {/* Top Right Image */}
       <img
         ref={topPlanetRef}
-        className="fixed top-0 right-0 md:scale-55 -translate-y-150 translate-x-80 transition ease-in-out"
+        className="fixed top-0 right-0 md:scale-55 md:-translate-y-150 md:translate-x-80 transition ease-in-out"
         src={images[0].src}
         alt={images[0].alt}
         style={{ zIndex: images[0].zIndex }}
@@ -148,7 +152,7 @@ export const Event = () => {
       {/*Bottom Image */}
       <img
         ref={bottomPlanetRef}
-        className="fixed bottom-0 left-0 md:scale-100 translate-y-100 -translate-x-20 transition ease-in-out"
+        className="fixed bottom-0 left-0 md:scale-100 md:translate-y-100 -translate-x-20 transition ease-in-out"
         src={images[1].src}
         alt={images[1].alt}
         style={{ zIndex: images[1].zIndex }}
@@ -157,7 +161,7 @@ export const Event = () => {
       {/* Floating Astronaut */}
       <img
         ref={astronautRef}
-        className=" fixed bottom-0 left-0 scale-25 translate-y-120 translate-x-78 transition ease-in-out"
+        className="fixed bottom-0 left-0 md:scale-25 scale-40 md:translate-y-120 translate-y-30 md:translate-x-78 -translate-x-0 transition ease-in-out"
         src={images[2].src}
         alt={images[2].alt}
         style={{ zIndex: images[1].zIndex }}
@@ -166,7 +170,7 @@ export const Event = () => {
       {/* Center Floating Image*/}
       <div ref={eventImageRef} className=" fixed inset-0 z-20 w-full h-full flex items-center justify-center ">
         <img
-          className="animated-event-img transition scale-25 -rotate-z-8 ease-in-out transform -translate-y-10"
+          className="animated-event-img transition md:scale-25 scale-35 -rotate-z-8 ease-in-out transform md:-translate-y-10 -translate-y-35"
           src={events[section]?.img}
           alt={events[section]?.name}
         />
@@ -174,9 +178,20 @@ export const Event = () => {
 
       {/* Center Event Name */}
       <div className="fixed z-10 w-full h-full flex items-center justify-center">
-        <h1 ref={eventNameRef} className="text-[150px] transition ease-in-out uppercase text-[#83EFFF]">
+        <h1 ref={eventNameRef} className="md:text-[130px] text-4xl transition ease-in-out uppercase text-[#83EFFF]">
           {events[section]?.name || ""}
         </h1>
+      </div>
+
+      <button
+        onClick={() => { navigate("/events/") }}
+        className="fixed bg-gray-200 px-2 py-1 rounded-xl uppercase cursor-pointer text-xl bottom-3 right-6 z-99 tracking-wider border-2 border-gray-800 text-shadow-gray-600 font-bold hover:scale-110"
+      >
+        Back
+      </button>
+
+      <div>
+        <Contact />
       </div>
 
     </section>

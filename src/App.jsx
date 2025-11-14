@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 // import SplashPage from './pages/home/SplashPage';
 import { Navbar } from './components/Navbar';
 import { Events } from './pages/events/Events';
-import { Event } from './pages/Event';
+import { Event } from './pages/Event/Event';
 import Home from './pages/home/home';
 
 function App() {
