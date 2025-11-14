@@ -16,9 +16,17 @@ const Home = () => {
   // GSAP Start
   const astronautRef = useRef(null);
 
-  useGSAP(() => {
-    el1 = astronautRef.current;
-  })
+  // useGSAP(() => {
+  //   const el1 = astronautRef.current;
+
+  //   gsap.to(el1, {
+  //     left: 100,
+  //     delay: 3,
+  //     duration: 5,
+  //     // yoyo: true,
+  //     repeat: -1,
+  //   })
+  // })
   //GSAP End
 
   // Create animated stars

@@ -52,7 +52,7 @@ export const Event = () => {
   const bottomPlanetRef = useRef(null);
   const topPlanetRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const el1 = eventNameRef.current;
     const el2 = eventImageRef.current;
     const container = containerRef.current;
@@ -119,8 +119,6 @@ export const Event = () => {
       scene2.kill();
       scene3.kill();
       scene4.kill();
-
-      // gsap.set([el1, el2, el3, el4, el5], { clearProps: "all" });
     }
   }, []);
   // GSAP END
