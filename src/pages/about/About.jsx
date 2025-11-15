@@ -3,7 +3,7 @@ import './About.css';
 export const About = () => {
   const boxStyle = {
     '--clip-border-color': '#fff',
-    '--bg-gradient': 'linear-gradient(180deg, rgba(49, 14, 0, 0.40) 0%, rgba(30, 0, 0, 0.40) 100%)'
+    '--bg-gradient': 'linear-gradient(180deg, rgba(49, 14, 0, 0.50) 0%, rgba(30, 0, 0, 0.50) 100%)'
   };
 
   return (

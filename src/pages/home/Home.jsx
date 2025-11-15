@@ -24,7 +24,7 @@ const Home = () => {
       scrollTrigger: {
         trigger: document.body,
         start: "top top",
-        end: "500px",
+        end: "30%",
         scrub: 2,
         markers: true,
       }
@@ -118,15 +118,13 @@ const Home = () => {
     }
 
     if (planetSurface) {
-      planetSurface.style.transform = `translateX(calc(-50% + ${
-        mouseX * 30 - 15
-      }px))`;
+      planetSurface.style.transform = `translateX(calc(-50% + ${mouseX * 30 - 15
+        }px))`;
     }
 
     if (rocks) {
-      rocks.style.transform = `translate(${mouseX * 10 - 5}px, ${
-        mouseY * 10 - 5
-      }px)`;
+      rocks.style.transform = `translate(${mouseX * 10 - 5}px, ${mouseY * 10 - 5
+        }px)`;
     }
 
     // if (astronaut) {
@@ -165,6 +163,7 @@ const Home = () => {
 
   return (
     <div id="main-content" className="w-full h-full">
+
       <div
         ref={splashContainerRef}
         className="relative w-screen h-[300vh] overflow-scroll bg-[#152448] bg-cover bg-center bg-no-repeat bg-blend-overlay"
@@ -172,6 +171,12 @@ const Home = () => {
           backgroundImage: `linear-gradient(circle at 50% 30%,rgb(238, 37, 15) 0%,rgb(241, 29, 54) 80%,rgb(248, 0, 50) 100%), url('./home-cloud.webp')`,
         }}
       >
+
+        {/* Featuring Section */}
+        {/* <div className="fixed h-screen w-screen bg-gray-950/90 z-99">
+
+        </div> */}
+
         {/* Glow Overlay */}
         <div className="absolute inset-0 z-10 pointer-events-none animate-glow-pulse bg-radial-gradient"
           style={{ background: 'radial-gradient(ellipse at 50% 20%, rgba(255, 150, 50, 0.3) 0%, transparent 50%)' }} />

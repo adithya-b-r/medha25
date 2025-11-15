@@ -247,7 +247,7 @@ export const Events = () => {
       </div>
 
       <div className="relative z-10 w-full h-full flex items-center justify-center">
-        <img className="md:scale-100 scale-200 absolute -bottom-50 md:-bottom-220 transition ease-in-out" src={images[0].src} alt="" style={{
+        <img className="md:scale-100 z-99 scale-200 absolute -bottom-50 md:-bottom-220 transition ease-in-out" src="/planet-blue.webp" alt="" style={{
           animation: 'spin-reverse 180s linear infinite'
         }} />
       </div>
