@@ -245,6 +245,7 @@ const Home = () => {
           style={{ animationDuration: '35s', animationDirection: 'reverse' }}></div>
 
         <ScrollDown />
+        <SocialBar />
       </div>
     </div>
   );
